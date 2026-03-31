@@ -1,7 +1,7 @@
 Package: sseg
 Type: Package
 Title: Compute various multitype-summaries for multitype point patterns
-Version: 0.2
+Version: 0.2.1
 Date: 2026-03-31
 Author: Tuomas Rajala
 Maintainer: Tuomas Rajala <tuomas.rajala@iki.fi>

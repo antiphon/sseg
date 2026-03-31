@@ -20,7 +20,7 @@ NumericVector Dinhom_c(NumericMatrix x,
   NumericVector out(nr);
   int i, j, ri;
   double w;
-  int ni, n;
+  int n;
   double l0 = inf_int;
   //double l0 = 99999999;
   // infimum of lambda per type
@@ -34,9 +34,7 @@ NumericVector Dinhom_c(NumericMatrix x,
       if(bdist(i) > r(ri)){
         w = 1;
         n++;
-        ni = 0;
         for(j = 0; j < graph.edges.at(i).size(); j++) {
-          ni++;
           w *= 1 - l0 / lambda(graph.edges.at(i).at(j)-1);
         }
         out(ri) += w;
