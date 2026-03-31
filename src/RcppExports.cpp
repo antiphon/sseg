@@ -5,6 +5,27 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
+// Dinhom_c
+NumericVector Dinhom_c(NumericMatrix x, NumericMatrix bbox, NumericVector lambda, NumericVector bdist, double inf_int, NumericVector r);
+RcppExport SEXP _sseg_Dinhom_c(SEXP xSEXP, SEXP bboxSEXP, SEXP lambdaSEXP, SEXP bdistSEXP, SEXP inf_intSEXP, SEXP rSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type bbox(bboxSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type bdist(bdistSEXP);
+    Rcpp::traits::input_parameter< double >::type inf_int(inf_intSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type r(rSEXP);
+    rcpp_result_gen = Rcpp::wrap(Dinhom_c(x, bbox, lambda, bdist, inf_int, r));
+    return rcpp_result_gen;
+END_RCPP
+}
 // Dinhom_pair_c
 NumericVector Dinhom_pair_c(int from, int to, NumericMatrix x, NumericMatrix bbox, NumericVector lambda, IntegerVector type, NumericVector bdist, NumericVector rho0, NumericVector r, int nmarks);
 RcppExport SEXP _sseg_Dinhom_pair_c(SEXP fromSEXP, SEXP toSEXP, SEXP xSEXP, SEXP bboxSEXP, SEXP lambdaSEXP, SEXP typeSEXP, SEXP bdistSEXP, SEXP rho0SEXP, SEXP rSEXP, SEXP nmarksSEXP) {
@@ -62,22 +83,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type r(rSEXP);
     Rcpp::traits::input_parameter< int >::type nmarks(nmarksSEXP);
     rcpp_result_gen = Rcpp::wrap(Dinhom_pair_graph_c(from, to, x, bbox, lambda, type, bdist, rho0, r, nmarks));
-    return rcpp_result_gen;
-END_RCPP
-}
-// Dinhom_c
-NumericVector Dinhom_c(NumericMatrix x, NumericMatrix bbox, NumericVector lambda, NumericVector bdist, double inf_int, NumericVector r);
-RcppExport SEXP _sseg_Dinhom_c(SEXP xSEXP, SEXP bboxSEXP, SEXP lambdaSEXP, SEXP bdistSEXP, SEXP inf_intSEXP, SEXP rSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type bbox(bboxSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type bdist(bdistSEXP);
-    Rcpp::traits::input_parameter< double >::type inf_int(inf_intSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type r(rSEXP);
-    rcpp_result_gen = Rcpp::wrap(Dinhom_c(x, bbox, lambda, bdist, inf_int, r));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -144,10 +149,10 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_sseg_Dinhom_c", (DL_FUNC) &_sseg_Dinhom_c, 6},
     {"_sseg_Dinhom_pair_c", (DL_FUNC) &_sseg_Dinhom_pair_c, 10},
     {"_sseg_Dinhom_pair_2_c", (DL_FUNC) &_sseg_Dinhom_pair_2_c, 10},
     {"_sseg_Dinhom_pair_graph_c", (DL_FUNC) &_sseg_Dinhom_pair_graph_c, 10},
-    {"_sseg_Dinhom_c", (DL_FUNC) &_sseg_Dinhom_c, 6},
     {"_sseg_graph_c", (DL_FUNC) &_sseg_graph_c, 5},
     {"_sseg_mingling_index_c_1st", (DL_FUNC) &_sseg_mingling_index_c_1st, 8},
     {"_sseg_mingling_index_c_2nd", (DL_FUNC) &_sseg_mingling_index_c_2nd, 8},
