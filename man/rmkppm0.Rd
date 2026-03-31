@@ -4,9 +4,21 @@
 \alias{rmkppm0}
 \title{Simulation of the independent components SNC as given by the author}
 \usage{
-rmkppm0(rho, kappa, omega, win = owin(), clusters = NULL, nsim = 1,
-  nu.ker = NULL, ij = NULL, eps = NULL, dimyx = NULL, xy = NULL,
-  epsth = 0.001, mc.cores = 1L)
+rmkppm0(
+  rho,
+  kappa,
+  omega,
+  win = owin(),
+  clusters = NULL,
+  nsim = 1,
+  nu.ker = NULL,
+  ij = NULL,
+  eps = NULL,
+  dimyx = NULL,
+  xy = NULL,
+  epsth = 0.001,
+  mc.cores = 1L
+)
 }
 \description{
 Simulation of the independent components SNC as given by the author

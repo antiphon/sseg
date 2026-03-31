@@ -4,9 +4,22 @@
 \alias{rPSNC}
 \title{Simulation of the PSNC as given by the authors}
 \usage{
-rPSNC(rho, kappa, omega, alpha, win = owin(), clusters = NULL, nsim = 1,
-  nu.ker = NULL, ij = NULL, eps = NULL, dimyx = NULL, xy = NULL,
-  epsth = 0.001, mc.cores = 1L)
+rPSNC(
+  rho,
+  kappa,
+  omega,
+  alpha,
+  win = owin(),
+  clusters = NULL,
+  nsim = 1,
+  nu.ker = NULL,
+  ij = NULL,
+  eps = NULL,
+  dimyx = NULL,
+  xy = NULL,
+  epsth = 0.001,
+  mc.cores = 1L
+)
 }
 \description{
 Simulation of the PSNC as given by the authors

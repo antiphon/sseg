@@ -15,6 +15,11 @@ lines(y, col=1, lwd=2)
 lines(y2, col=2, lwd=2)
 }
 
+if(0){
+  y <- mingling_index(x,  i = i, correction = "b", version=1)
+
+}
+
 
 if(1){
   y <- mingling_index(x,  i = i, ntype="knn", r = 1:100)

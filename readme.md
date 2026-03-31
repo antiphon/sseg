@@ -8,19 +8,20 @@ This is a reboot of the old `spatialsegregation` package originally conceived 20
 * (inhomogeneous) ISAR
 * Intensity estimation with automatic bandwidth selection
 * Dixon's test
+* Mingling index
 
-To install the vignette that demonstrates how to compute ISAR's install the package using
 
 Planned features:
 
 * Spatial versions of Simpson and Shannon indices
-* Mingling index
 * Mean composite information
 * Models for hypothesis testing:
     * inhomogeneous random superposition
     * inhomogeneous random marking
     * Product shot noise Cox process
 
+
+To install the vignette that demonstrates how to compute ISAR's install the package using
 
 ```
 library(devtools)

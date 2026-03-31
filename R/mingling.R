@@ -3,14 +3,19 @@
 #' Compute the ratio of own type and all type neighbours
 #'
 #' @param x multitype point pattern
-#' @param i optional target type. If omitted, compute for all.
+#' @param i optional target type. If omitted, compute for the first level of marks.
 #' @param r neighbourhood radius / other parameter
 #' @param normalise if TRUE, divide by CSR value 1 - lam[i]/lam.
 #' @param correction "border" or "none" (defaut)
-#' @param version 1 or 2
+#' @param version 1 or 2. See details.
 #' @param ntype "geometric" or "knn"
-#' @details correction = "border" is minus-sampling. Version 1 is 1 - E(same type)/E(any type),
-#'  version 2 is 1 - E [ (same type)/(any type) ]
+#'
+#' @details correction = "border" is minus-sampling.
+#'
+#' Version 1 is \eqn{1 - E[deg(same type)]/E[deg(any type)]}.
+#'
+#' Version 2 is eqn{1 - E [deg(same type)/deg(any type) ]}
+#'
 #' @export
 
 mingling_index <- function(x, i, r, normalise = FALSE,
@@ -37,11 +42,15 @@ mingling_index <- function(x, i, r, normalise = FALSE,
   all <- missing(i)
   if(all) {
     i <- 1:nm
+    i <- marknames[i]
+    ii <- match(i, marknames)
+  } else{
+    if(is.numeric(i)) i <- marknames[i]
+    ii <- match(i, marknames)
+
+    if(any(is.na(ii))) stop("'i' not understood.")
+    if(length(ii) > 1) {ii <- ii[1]; warning("Using only the first element of 'i'")}
   }
-  if(is.numeric(i)) i <- marknames[i]
-  ii <- match(i, marknames)
-  if(any(is.na(ii))) stop("'i' not understood.")
-  if(length(ii)>1) {ii <- ii[1]; warning("Using only the first element of 'i'")}
   target <- marknames[ii]
 
   # edge correction
@@ -54,9 +63,11 @@ mingling_index <- function(x, i, r, normalise = FALSE,
   out <- mingling_index_c(coord, mi, nm, bbox, bdist, r, ii, ntypei)
 
   #browser()
+
+  #browser()
   if(normalise) {
     norm <- 1 - lam[ii]/sum(lam)
-    out <- ( apply(out, 1, function(v) v/norm) )
+    out <- t( apply(out, 1, function(v) v/norm) )
   }
   # gather
   df <- data.frame(r=r)

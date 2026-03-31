@@ -4,13 +4,20 @@
 \alias{mingling_index}
 \title{Mingling Index}
 \usage{
-mingling_index(x, i, r, normalise = FALSE, correction = "border",
-  version = 1, ntype = "geometric")
+mingling_index(
+  x,
+  i,
+  r,
+  normalise = FALSE,
+  correction = "border",
+  version = 1,
+  ntype = "geometric"
+)
 }
 \arguments{
 \item{x}{multitype point pattern}
 
-\item{i}{optional target type. If omitted, compute for all.}
+\item{i}{optional target type. If omitted, compute for the first level of marks.}
 
 \item{r}{neighbourhood radius / other parameter}
 
@@ -18,7 +25,7 @@ mingling_index(x, i, r, normalise = FALSE, correction = "border",
 
 \item{correction}{"border" or "none" (defaut)}
 
-\item{version}{1 or 2}
+\item{version}{1 or 2. See details.}
 
 \item{ntype}{"geometric" or "knn"}
 }
@@ -26,6 +33,9 @@ mingling_index(x, i, r, normalise = FALSE, correction = "border",
 Compute the ratio of own type and all type neighbours
 }
 \details{
-correction = "border" is minus-sampling. Version 1 is 1 - E(same type)/E(any type),
- version 2 is 1 - E [ (same type)/(any type) ]
+correction = "border" is minus-sampling.
+
+Version 1 is \eqn{1 - E[deg(same type)]/E[deg(any type)]}.
+
+Version 2 is eqn{1 - E [deg(same type)/deg(any type) ]}
 }
